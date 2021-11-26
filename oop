@@ -1,0 +1,473 @@
+'''
+•	A class is a user-defined blueprint or prototype from which objects are created.
+•	Class Definition Syntax:
+
+class ClassName:
+# Statement-1
+.
+.
+# Statement-N
+
+•	An Object is an instance of a Class. 
+•	self
+Class methods must have an extra first parameter in the method definition. 
+
+
+'''
+
+#creating class & declaring of objects 
+class Engineer:
+    attr1="IT"         #attributes
+    attr2="Non-it"
+
+    def func(self):            #method
+        print("he is from ",self.attr1)
+        print("she is from ",self.attr2)
+
+Engg=Engineer()   #object instantiation
+
+print(Engg.attr1)    #accessing class attributes & methods using objects
+Engg.func()
+
+'''
+•	__init__ method is used to initializing the object’s state.
+
+•	Constructors are used to initializing the object’s state.
+•	Types of constructors :
+1.	default constructor 
+2.	parameterized constructor 
+
+'''
+
+class Person:
+    def __init__(self,name): #constructor
+        self.name=name
+
+    def func(self):   #sample method
+        print("hello,my name is",self.name)
+
+p=Person("steve")
+p.func()
+
+'''
+•	Destructors are called when an object gets destroyed. 
+'''
+
+class Employee:
+    def __init__(self):
+        print("employee created")
+
+    def func(self):   #sample method
+        print("hello,my name is")
+
+    def __del__(self):
+        print("destructor called , employee deleted")
+
+object=Employee()
+del object  
+
+
+####
+class Dog:
+    animal="dog" #class variables
+
+    def __init__(self,breed,color):
+        self.breed=breed   #instance variables
+        self.color=color
+
+    def set_age(self,age): #set values
+        self.age=age
+
+    def get_age(self):   #view values
+        return self.age
+
+Rodger=Dog("Pug","white")
+Buzo=Dog("Bulldog","black")
+
+Rodger.set_age("4")
+print(Rodger.get_age())
+
+print("Rodger is ",Rodger.animal)
+print("breed is ",Rodger.breed)
+print("color is ",Rodger.color)
+
+print("buzo is ",Buzo.animal)
+print("breed is ",Buzo.breed)
+print("color is ",Buzo.color)
+
+#example
+class Addition:
+    first=0
+    second=0
+    answer=0
+
+    def __init__(self,f,s):
+        self.first=f
+        self.second=s
+
+    def calculate(self):
+        self.answer=self.first+self.second
+
+    def display(self):
+        print("first number= ",(self.first))
+        print("second number= ",(self.second))
+        print("answer is ",(self.answer))
+
+object=Addition(4,5)
+object.calculate()
+object.display()
+
+
+'''
+Create a class with a couple of functions like these examples.
+•	magic.replace("string", 'char', char') is a function that replaces all of the specified characters with another characters.
+•	magic.str_length("string") is a function that returns the length of the string.
+•	magic.trim(" string ") is a function that returns a string that truncates spaces at both the beginning and end.
+•	magic.list_slice(list, tuple) is a function that returns the items in the list that are among the specified indexes. 
+If the length of the new list is 0, return -1.
+
+Examples
+magic.replace("AzErty-QwErty", "E", "e") ➞ "Azerty-Qwerty"
+
+magic.str_length("hello world") ➞ 11
+
+magic.trim("      python is awesome      ") ➞ "python is awesome"
+
+magic.list_slice([1, 2, 3, 4, 5], (2, 4)) ➞ [ 2, 3, 4 ]
+
+'''
+
+
+class Magic:
+    def replace(self,string,char1,char2):
+        return string.replace(char1,char2)
+
+    def str_length(self,string):
+        return len(string)
+
+    def trim(self,string):
+        return string.strip()
+
+    def list_slice(self,list,tuple):
+        return list[slice(tuple[0]-1,tuple[1])]
+
+magic=Magic()
+print(magic.replace("AzErty-QwErty", "E", "e"))
+print(magic.str_length("hello world"))
+print(magic.trim("      python is awesome      "))
+print(magic.list_slice([1, 2, 3,7,8,9, 4, 5], (2, 5)))
+
+
+#polymorphism
+'''same function but used in deifferent types'''
+
+print(len("python"))
+print(len(["python","java","c"]))
+print(len({"name":"python","language":"moderate"}))
+
+
+num1=4
+num2=5
+print(num1+num2)
+
+str1="python"
+str2="language"
+print(str1+" "+str2)
+
+
+class Cat:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+
+    def info(self):
+        print(f"I am cat.My name is {self.name}.I am {self.age} years old")
+
+class Dog:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+
+    def info(self):
+        print(f"I am dog.My name is {self.name}.I am {self.age} years old")
+
+c=Cat("kitty",2)
+d=Dog("brucy",4)
+
+for animal in (c,d):
+    animal.info()
+    
+
+#encapsulation
+
+class Computer:
+    def __init__(self):
+        self.__maxprice=400
+
+    def sell(self):
+        print("selling price is {}".format(self.__maxprice))
+
+    def set_maxprice(self,price):
+        self.__maxprice=price
+
+c=Computer()
+c.sell()
+
+c.__maxprice=500
+c.sell()
+
+c.set_maxprice(500)
+c.sell()
+
+#abstraction
+
+#from abc import abstractmethod
+
+
+
+from abc import ABC, abstractmethod   
+class Car(ABC):   
+    def mileage(self):   
+        pass  
+  
+class Tesla(Car):   
+    def mileage(self):   
+        print("The mileage is 30kmph")   
+class Suzuki(Car):   
+    def mileage(self):   
+        print("The mileage is 25kmph ")   
+class Duster(Car):   
+     def mileage(self):   
+          print("The mileage is 24kmph ")   
+  
+class Renault(Car):   
+    def mileage(self):   
+            print("The mileage is 27kmph ")   
+          
+# Driver code   
+t= Tesla ()   
+t.mileage()   
+  
+r = Renault()   
+r.mileage()   
+  
+s = Suzuki()   
+s.mileage()   
+d = Duster()   
+d.mileage() 
+
+
+
+Inheritance in python
+•	Inheritance is, a class that inherits all the methods and properties from another class.
+
+
+
+•	Properties:
+1.	It represents real-world relationships well. 
+2.	It provides reusability of code.
+3.	It is transitive in nature.
+                
+
+
+•	Types of Inheritance:
+1.	Single Inheritance
+2.	Multiple Inheritance
+3.	Multilevel Inheritance
+4.	Hierarchical Inheritance
+5.	 Hybrid Inheritance
+
+•	Single Inheritance:
+When a child class inherits from only one parent class, it is called single inheritance.
+    
+
+•	Multiple Inheritance:
+When a child class inherits from multiple parent classes, it is called multiple inheritance. 
+
+
+•	Multilevel Inheritance:
+When we have a child and grandchild relationship.
+
+
+•	Hierarchical Inheritance:
+More than one derived classes are created from a single base.
+
+
+•	Hybrid Inheritance:
+This form combines more than one form of inheritance.
+
+
+ Super() Function:
+Super function allows us to call a method from the parent class.
+Example-
+Let’s take an example of animals. Dogs, cats and cows are part of animals. They also share common characteristics like –  
+•	They are mammals.
+•	They have a tail and four legs.
+•	They are domestic animals.
+
+Method Overriding
+You can override a method in python
+The functionality of the parent class method is changes by overriding the same method in the child class.
+
+
+
+#single inhertance
+class Parent:
+    def func1(self):
+        print("this is in parent class")
+
+class Child(Parent):
+    def func2(self):
+        print("this is in child class")
+
+c=Child()
+c.func1()
+c.func2()
+
+#mutiple inhertance
+
+class Mother:
+    mothername=" "
+    def mother(self):
+        print(self.mothername)
+
+class Father:
+    fathername=" "
+    def father(self):
+        print(self.fathername)
+
+class Son(Mother,Father):
+    def parent(self):
+        print("Father: ",self.fathername)
+        print("Mother: ",self.mothername)
+
+s=Son()
+s.fathername="Ram"
+s.mothername="sita"
+s.parent()
+
+#multilevel inheritance
+
+class Grandfather:
+    def __init__(self,grandfathername):
+        self.grandfathername=grandfathername
+
+class Father(Grandfather):
+    def __init__(self,fathername,grandfathername):
+        self.fathername=fathername
+
+        Grandfather.__init__(self,grandfathername) #invoking constructor
+
+class Son(Father):
+    def __init__(self,sonname,fathername,grandfathername):
+        self.sonname=sonname
+
+        Father.__init__(self,fathername,grandfathername)   #invoking constructor
+
+    def print(self):
+        print("Grandfather: ",self.grandfathername)
+        print("Father: ",self.fathername)
+        print("Son: ",self.sonname)
+
+s=Son("Prince","Ram","Mani")
+s.print()
+
+#hierarchical inheritance
+
+class Parent:
+    def func1(self):
+        print("this is in parent class")
+
+class Child1(Parent):
+    def func2(self):
+        print("this is in child1")
+
+class Child2(Parent):
+    def func3(self):
+        print("this is in child2")
+
+c1=Child1()
+c2=Child2()
+
+c1.func1()
+c1.func2()
+
+c2.func1()
+c2.func3()
+
+#hybrid inheritance
+
+class School:
+    def func1(self):
+        print("this is in school")
+
+class Student1(School):
+    def func2(self):
+        print("this is in student1")
+
+class Student2(School):
+    def func3(self):
+        print("this is in student2")
+
+class Student3(Student1,School):
+    def func4(self):
+        print("this is in student3")
+
+s=Student3()
+s.func1()
+s.func4()
+s.func2()
+
+s1=Student2()
+s1.func3()
+
+
+#super function
+class Animals:
+    def __init__(self):
+        self.legs=4
+        self.domestic=True
+        self.tail=True
+        self.mammals=True
+
+    def is_mammal(self):
+        if self.mammals:
+            print("it is mammal")
+
+    def is_domestic(self):
+        if self.domestic:
+            print("it is domestic animal")
+
+class Dog(Animals):
+    def __init__(self):
+        super().__init__()
+
+    def is_mammal(self):
+        super().is_mammal()
+
+class Cow(Animals):
+    def __init__(self):
+        super().__init__()
+
+    def hasTailandLegs(self):
+        if self.tail and self.legs==4:
+            print("has tail and legs")
+
+d=Dog()
+d.is_mammal()
+c=Cow()
+c.hasTailandLegs()
+ 
+
+#method overriding
+
+class Parent:
+    def func1(self):
+        print("this is in parent class")
+
+class Child(Parent):
+    def func1(self):
+        print("this is in child class")
+
+c=Child()
+c.func1()
